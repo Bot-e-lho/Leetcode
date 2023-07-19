@@ -1,0 +1,121 @@
+bool checkIfPangram(char * sentence){
+int i = 0;
+char temp;
+int abc[26] = {0};
+    if(strlen(sentence) < 26){
+        return false;
+    }
+    while(sentence[i] != '\0'){
+        temp = tolower(sentence[i]);
+        if(temp >= 'a' || temp <= 'z'){
+            abc[temp - 'a']++;
+        }
+        i++;
+    }
+    for(i = 0; i < 26; i++){
+        if(abc[i] == 0)
+            return false;
+    }
+    return true;
+
+}
+
+
+
+//--------------------------------------------------------------------------------
+/*
+Primeira ideia de resolução, é aceita porém extremamente desnecessária:
+bool checkIfPangram(char * sentence){
+
+int abc[26] = {0};
+    if(strlen(sentence) < 26){
+        return false;
+    }
+
+    for(int i = 0; i < strlen(sentence); i++){
+       if(sentence[i] == 'a' || sentence[i] == 'A'){
+           abc[0]++;
+       }
+       if(sentence[i] == 'b' || sentence[i] == 'B'){
+           abc[1]++;
+       }
+       if(sentence[i] == 'c' || sentence[i] == 'C'){
+           abc[2]++;
+       }
+       if(sentence[i] == 'd' || sentence[i] == 'D'){
+           abc[3]++;
+       }
+       if(sentence[i] == 'e' || sentence[i] == 'E'){
+           abc[4]++;
+       }
+       if(sentence[i] == 'f' || sentence[i] == 'F'){
+           abc[5]++;
+       }
+       if(sentence[i] == 'g' || sentence[i] == 'G'){
+           abc[6]++;
+       }
+       if(sentence[i] == 'h' || sentence[i] == 'H'){
+           abc[7]++;
+       }
+       if(sentence[i] == 'i' || sentence[i] == 'I'){
+           abc[8]++;
+       }
+       if(sentence[i] == 'j' || sentence[i] == 'J'){
+           abc[9]++;
+       }
+       if(sentence[i] == 'k' || sentence[i] == 'K'){
+           abc[10]++;
+       }
+       if(sentence[i] == 'l' || sentence[i] == 'L'){
+           abc[11]++;
+       }
+       if(sentence[i] == 'm' || sentence[i] == 'M'){
+           abc[12]++;
+       }
+       if(sentence[i] == 'n' || sentence[i] == 'N'){
+           abc[13]++;
+       }
+       if(sentence[i] == 'o' || sentence[i] == 'O'){
+           abc[14]++;
+       }
+       if(sentence[i] == 'p' || sentence[i] == 'P'){
+           abc[15]++;
+       }
+       if(sentence[i] == 'q' || sentence[i] == 'Q'){
+           abc[16]++;
+       }
+       if(sentence[i] == 'r' || sentence[i] == 'R'){
+           abc[17]++;
+       }
+       if(sentence[i] == 's' || sentence[i] == 'S'){
+           abc[18]++;
+       }
+       if(sentence[i] == 't' || sentence[i] == 'T'){
+           abc[19]++;
+       }
+       if(sentence[i] == 'u' || sentence[i] == 'U'){
+           abc[20]++;
+       }
+       if(sentence[i] == 'v' || sentence[i] == 'V'){
+           abc[21]++;
+       }
+       if(sentence[i] == 'w' || sentence[i] == 'W'){
+           abc[22]++;
+       }
+       if(sentence[i] == 'x' || sentence[i] == 'X'){
+           abc[23]++;
+       }
+       if(sentence[i] == 'y' || sentence[i] == 'Y'){
+           abc[24]++;
+       }
+       if(sentence[i] == 'z' || sentence[i] == 'Z'){
+           abc[25]++;
+       }
+    }
+    if(sentence[0] > 0 && sentence[1] > 0 && sentence[2] > 0 && sentence[3] > 0 && sentence[4] > 0 && sentence[5] > 0 && sentence[6] > 0 && sentence[7] > 0 && sentence[8] > 0 && sentence[9] > 0 && sentence[10] > 0 && sentence[11] > 0 && sentence[12] > 0 && sentence[13] > 0 && sentence[14] > 0 && sentence[15] > 0 && sentence[16] > 0 && sentence[17] > 0 && sentence[18] > 0 && sentence[19] > 0 && sentence[20] > 0 && sentence[21] > 0 && sentence[22] > 0 && sentence[23] > 0 && sentence[24] > 0 && sentence[25] > 0 ){
+        return true;
+    }else{
+    
+    return false;
+}
+}*/

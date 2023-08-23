@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef long key;
+
+typedef struct Node {
+    key num;
+    struct Node* left;
+    struct Node* right;
+} Node;
+
+Node* create(key a) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->num = a;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
+
+Node* insere(Node* node, key a) {
+    if (node == NULL)
+        return create(a);
+
+    if (a < node->num){
+        node->left = insere(node->left, a);
+    }else if (a > node->num){
+        node->right = insere(node->right, a);
+    }else{
+        return node;
+	}
+	return node;
+}
+
+void freeTree(Node* no) {
+    if (no != NULL) {
+        freeTree(no->left);
+        freeTree(no->right);
+        free(no);
+    }
+}
+
+void inc_aux(Node* root, Node** new, Node** aux) {
+    if (root == NULL) {
+        return;
+    }
+
+    inc_aux(root->left, new, aux);
+
+    if (*new == NULL) {
+        *new = create(root->num);
+        *aux = *new;
+    } else {
+        (*aux)->right = create(root->num);
+        *aux = (*aux)->right;
+    }
+
+    inc_aux(root->right, new, aux);
+}
+
+Node* increasingBST(Node* root) {
+    Node* new_root = NULL;
+    Node* aux = NULL;
+
+    inc_aux(root, &new_root, &aux);
+
+    return new_root;
+}
+
+void print(Node* no) {
+    if (no != NULL) {
+        print(no->left);
+        printf("%ld ", no->num);
+        print(no->right);
+    }
+}
+
+int main(int argc, char const* argv[]) {
+    Node* no = NULL;
+
+    no = insere( no, 5);
+    no = insere( no ,3);
+    no = insere( no, 6);
+    no = insere( no, 2);
+    no = insere( no, 4);
+    no = insere( no, 8);
+    no = insere( no, 1);
+    no = insere( no, 7);
+    no = insere( no, 9);
+
+    printf("Arvore:\n");
+    print(no);
+    printf("\n");
+
+    Node* new = increasingBST(no);
+
+    printf("Arvore Dir:\n");
+    print(new);
+    printf("\n");
+
+    freeTree(no);
+    freeTree(new);
+
+    return 0;
+}
